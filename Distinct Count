@@ -1,0 +1,23 @@
+//https://www.hackerearth.com/practice/data-structures/trees/binary-search-tree/practice-problems/algorithm/distinct-count/submissions/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int tc; cin>>tc;
+    while(tc--){
+        int n,x; cin>>n>>x;
+        vector <int> vec(n);
+
+        for(int i=0; i<n; i++)cin>>vec[i];
+		sort(vec.begin(), vec.end());
+        int cnt = unique(vec.begin(),vec.end()) - vec.begin();
+
+
+        if(cnt == x)cout<<"Good"<<endl;
+        else if(cnt < x)cout<<"Bad"<<endl;
+        else cout<<"Average"<<endl;
+    }
+
+    return 0;
+}
