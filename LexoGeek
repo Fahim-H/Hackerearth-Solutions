@@ -1,0 +1,19 @@
+//https://www.hackerearth.com/problem/algorithm/lexogeek-e6450fb7/submissions/
+#include <bits/stdc++.h>
+#include <vector>
+#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+typedef long long ll;
+using namespace std;
+
+int main(){
+    optimize();
+    int tc; cin>>tc;
+    while(tc--){
+        string line; cin>>line;
+        if(next_permutation(line.begin(),line.end())){
+            cout<<line<<endl;
+        }
+        else cout<<"no answer"<<endl;
+    }
+    return 0;
+}
