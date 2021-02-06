@@ -1,0 +1,27 @@
+//https://www.hackerearth.com/practice/data-structures/trees/heapspriority-queues/practice-problems/algorithm/monk-and-champions-league/submissions/
+#include<bits/stdc++.h>
+#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+using namespace std;
+
+int main()
+{
+    optimize();
+    priority_queue <int> q;
+    int m,n; cin>>m>>n;
+
+    while(m--){
+        int in; cin>>in;
+        q.push(in);
+    }
+
+    int sum = 0;
+    while(n--){
+        int price = q.top();
+        q.pop();
+        sum += price;
+        price--;
+        q.push(price);
+    }
+    cout<<sum<<endl;
+    return 0;
+}
