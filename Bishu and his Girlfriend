@@ -1,0 +1,69 @@
+//https://www.hackerearth.com/practice/algorithms/graphs/depth-first-search/practice-problems/algorithm/bishu-and-his-girlfriend/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+#define endl '\n'
+#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define fraction() cout.unsetf(ios::floatfield); cout.precision(10); cout.setf(ios::fixed,ios::floatfield);
+#define MOD 1e9+7
+#include <ext/pb_ds/assoc_container.hpp>
+using namespace __gnu_pbds;
+typedef long long int ll;
+typedef tree< ll, null_type, less_equal<ll>, rb_tree_tag, tree_order_statistics_node_update > ordered_set;
+/// cout<<*X.find_by_order(1)<<endl; // finds the kth element
+/// cout<<X.order_of_key(-5)<<endl;  // number of items in a set that are strictly smaller than our item
+
+const int mx = 1010;
+bool vis[mx], country[mx];
+vector <int> adj[mx];
+int dis[mx];
+
+void DFS(int u, int d){
+    vis[u] = 1;
+    dis[u] = d;
+
+    for(auto v:adj[u]){
+        if(!vis[v]){
+            DFS(v,d+1);
+        }
+    }
+}
+
+int main(){
+    optimize();
+
+    int n, lim = 0; cin>>n;
+    for(int i=1; i<=n-1; i++){
+        int u,v; cin>>u>>v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+        lim = max(lim,max(u,v));
+    }
+
+    for(int i=1; i<=lim; i++){
+        if(!vis[i]){
+            DFS(i,1);
+        }
+    }
+
+
+    int q; cin>>q;
+    for(int i=1; i<=q; i++){
+        int in; cin>>in;
+        country[in] = 1;
+    }
+
+    int ans = 0, temp = INT_MAX;
+    for(int i=1; i<=lim; i++){
+        if(country[i] && temp > dis[i]){
+            ans = i;
+            temp = dis[i];
+        }
+    }
+
+    cout<<ans<<endl;
+    //for(int i=1; i<=lim; i++)cout<<i<<": "<<dis[i]<<endl;
+
+    return 0;
+}
